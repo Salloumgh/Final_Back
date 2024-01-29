@@ -26,7 +26,7 @@ class Volunteers (Base):
     volunteer_id = Column(Integer,primary_key=True,nullable=False) 
     name = Column(String(255))
     address = Column(String(255))
-    phone = Column(Integer)
+    phone = Column(String(255))
     email = Column(String(255))
     experience = Column(String(1200))
     skills = Column (String(1200))
@@ -40,7 +40,7 @@ class Organizations (Base):
     organization_id= Column (Integer ,autoincrement=True ,primary_key=True)
     name = Column(String(255))
     address = Column(String(255))
-    phone = Column(Integer)
+    phone = Column(String(255))
     email = Column(String(255))
     unique_identifier = Column(String(255)) 
    
@@ -60,9 +60,7 @@ class Locations (Base):
     street = Column(String(255)) 
     city = Column(String(255)) 
     postal_code = Column(String) 
-    country = Column(String) 
-    latitude = Column(Integer)
-    longitude = Column(Integer)
+ 
     
 
 
