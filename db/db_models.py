@@ -1,8 +1,25 @@
 from sqlalchemy import Column,ForeignKey,String,Integer
-from sqlalchemy.orm import relationship,Session
+from sqlalchemy.orm import relationship,Session,sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
 
 Base = declarative_base()
+metadata = Base.metadata
+
+SQLALHEMY_DATABASE_URL = "mysql+pymysql://root:@localhost:3306/final"
+
+engine = create_engine (
+    SQLALHEMY_DATABASE_URL
+)
+
+SessionLocal=sessionmaker(autocommit = False,autoflush=False,bind=engine)
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
 
 class Volunteers (Base):
     __tablename__ ="volunteers"
@@ -11,10 +28,10 @@ class Volunteers (Base):
     address = Column(String(255))
     phone = Column(Integer)
     email = Column(String(255))
-    experience = Column(String(1200),required=False)
-    skills = Column (String(1200),required=False)
+    experience = Column(String(1200))
+    skills = Column (String(1200))
     availability = Column (String(1200))
-    shelter_id =Column(Integer)
+    #shelter_id =Column(Integer)
     #FOREIGN KEY (shelter_id) REFERENCES Shelters(shelter_id)
 
 
